@@ -21,6 +21,23 @@ login_manager.login_view = "auth.login" #type:ignore
 
 with app.app_context():
     db.create_all()
+
+    admin = User.query.filter_by(email="admin@gmail.com").first()
+
+    if not admin:
+        from werkzeug.security import generate_password_hash
+
+        admin = User(
+            name="Admin",
+            email="admin@gmail.com",
+            password=generate_password_hash("admin123"),
+            role="admin",
+            approved=True,
+            blacklisted=False
+        )
+
+        db.session.add(admin)
+        db.session.commit()
     
 @login_manager.user_loader
 def load_user(user_id):
