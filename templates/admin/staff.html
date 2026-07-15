@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container py-5">
+  <h2 class="fw-bold mb-4">Staff Management</h2>
+
+  {% if staff %}
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Approved</th>
+          <th>Blacklisted</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for member in staff %}
+
+        <tr>
+          <td>{{ member.id }}</td>
+          <td>{{ member.name }}</td>
+          <td>{{ member.email }}</td>
+          <td>
+            {% if member.approved %}
+
+            <span class="badge bg-success"> Approved </span>
+
+            {% else %}
+
+            <span class="badge bg-warning text-dark"> Pending </span>
+
+            {% endif %}
+          </td>
+
+          <td>
+            {% if member.blacklisted %}
+
+            <span class="badge bg-danger"> Yes </span>
+
+            {% else %}
+
+            <span class="badge bg-success"> No </span>
+
+            {% endif %}
+          </td>
+
+          <td>
+            {% if not member.approved %}
+
+            <form
+              action="{{ url_for('admin.approve_user', user_id=member.id) }}"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-sm btn-success">
+                Approve
+              </button>
+            </form>
+
+            {% endif %} {% if member.blacklisted %}
+
+            <form
+              action="{{ url_for('admin.unblacklist_user', user_id=member.id) }}"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-sm btn-primary">
+                Unblacklist
+              </button>
+            </form>
+
+            {% else %}
+
+            <form
+              action="{{ url_for('admin.blacklist_user', user_id=member.id) }}"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-sm btn-danger">
+                Blacklist
+              </button>
+            </form>
+
+            {% endif %}
+          </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+
+  <div class="alert alert-info">No staff members found.</div>
+
+  {% endif %}
+</div>
+
+{% endblock %}

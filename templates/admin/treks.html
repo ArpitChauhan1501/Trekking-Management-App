@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Trek Management</h2>
+
+    <a href="{{ url_for('admin.add_trek') }}" class="btn btn-success">
+      <i class="bi bi-plus-circle"></i>
+
+      Add Trek
+    </a>
+  </div>
+  {% if treks %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Difficulty</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Participants</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for trek in treks %}
+        <tr>
+          <td>{{ trek.id }}</td>
+          <td>{{ trek.name }}</td>
+          <td>{{ trek.location }}</td>
+          <td>{{ trek.difficulty }}</td>
+          <td>{{ trek.duration }} Days</td>
+          <td>₹ {{ trek.price }}</td>
+          <td>{{ trek.max_participants }}</td>
+          <td>
+            <a
+              href="{{ url_for('admin.edit_trek', trek_id=trek.id) }}"
+              class="btn btn-sm btn-warning"
+            >
+              <i class="bi bi-pencil-square"></i> Edit
+            </a>
+            <form
+              action="{{ url_for('admin.delete_trek', trek_id=trek.id) }}"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-sm btn-danger">
+                <i class="bi bi-trash"></i>
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+
+  <div class="alert alert-info text-center">
+    <h5>No Treks Available</h5>
+    <p class="mb-0">
+      Click <strong>Add Trek</strong> to create your first trek.
+    </p>
+  </div>
+
+  {% endif %}
+</div>
+
+{% endblock %}

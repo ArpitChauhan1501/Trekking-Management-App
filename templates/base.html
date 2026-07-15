@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrekMate - Trekking Management System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.io') }}" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="{{ url_for('auth.home') }}">
+          <i class="bi bi-signpost-split-fill"></i> TrekMate</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            {% if current_user.is_authenticated %} {% if current_user.role ==
+            "admin" %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.admin_dashboard') }}">
+                Dashboard
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.admin_treks') }}">
+                Treks
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.admin_staff') }}">
+                Staff
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.admin_users') }}">
+                Users
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.admin_bookings') }}">
+                Bookings
+              </a>
+            </li>
+
+            {% elif current_user.role == "staff" %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('staff.staff_dashboard') }}">
+                Dashboard
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('staff.assigned_treks') }}">
+                Assigned Treks
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('staff.staff_bookings') }}">
+                Bookings
+              </a>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('user.user_dashboard') }}">
+                Dashboard
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('user.user_treks') }}">
+                Explore Treks
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('user.my_bookings') }}">
+                My Bookings
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.profile') }}">
+                Profile
+              </a>
+            </li>
+
+            {% endif %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                Logout
+              </a>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.home') }}"> Home </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.about') }}"> About </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.contact') }}">
+                Contact
+              </a>
+            </li>
+
+            {% if request.endpoint == "auth.login" %}
+
+            <li class="nav-item">
+              <a
+                class="btn btn-light ms-2"
+                href="{{ url_for('auth.register') }}"
+              >
+                Register
+              </a>
+            </li>
+
+            {% elif request.endpoint == "auth.register" %}
+
+            <li class="nav-item">
+              <a class="btn btn-light ms-2" href="{{ url_for('auth.login') }}">
+                Login
+              </a>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.login') }}"> Login </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="btn btn-light ms-2"
+                href="{{ url_for('auth.register') }}"
+              >
+                Register
+              </a>
+            </li>
+
+            {% endif %} {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+
+      <div class="alert alert-{{ category }} alert-dismissible fade show">
+        {{ message }}
+
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+
+      {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
+    </main>
+    <footer>
+      <div class="container text-center">
+        <h5>TrekMate</h5>
+
+        <p class="mb-1">Explore. Experience. Enjoy.</p>
+
+        <small> © 2026 TrekMate. All Rights Reserved. </small>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">About TrekMate</h1>
+
+    <p class="lead text-muted">
+      Making trekking management simple, secure and accessible.
+    </p>
+  </div>
+
+  <div class="row align-items-center mb-5">
+    <div class="text-center col-lg-6">
+      <h3 class="fw-bold mb-3">Who We Are</h3>
+
+      <p>
+        TrekMate is a web-based Trekking Management System designed to simplify
+        and streamline the management of trekking activities. The platform
+        provides a centralized solution where administrators can create and
+        manage trekking routes, assign staff members, monitor bookings, and
+        oversee user activities efficiently. Users can easily browse available
+        treks, make online bookings, and track their booking history through an
+        intuitive and user-friendly interface.
+      </p>
+
+      <p>
+        Built using Python, Flask, SQLite, SQLAlchemy, Bootstrap, HTML, CSS, and
+        Jinja2, TrekMate offers a secure, responsive, and efficient web
+        application for trekking management. The system implements role-based
+        access control, secure user authentication, staff assignment, and an
+        organized booking workflow, making it a reliable solution for both
+        trekking organizers and adventure enthusiasts.
+      </p>
+    </div>
+
+    <div class="col-lg-6 text-center">
+      <img
+        src="{{ url_for('static', filename='images/about.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="About TrekMate"
+      />
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <div class="card shadow h-100">
+        <div class="card-body">
+          <h4 class="text-success mb-3">
+            <i class="bi bi-bullseye me-2"></i>
+            Our Mission
+          </h4>
+
+          <p>
+            To provide an efficient and easy-to-use trekking management platform
+            that simplifies trek planning, booking and administration for
+            everyone.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow h-100">
+        <div class="card-body">
+          <h4 class="text-success mb-3">
+            <i class="bi bi-eye me-2"></i>
+            Our Vision
+          </h4>
+
+          <p>
+            To encourage outdoor adventure by using technology to make trekking
+            safer, more organized and easily accessible for all trekking
+            enthusiasts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <h2 class="text-center fw-bold mb-4">Key Features</h2>
+
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <i class="bi bi-map fs-1 text-success"></i>
+
+        <h5 class="mt-3">Trek Management</h5>
+
+        <p>Create, update and manage trekking routes efficiently.</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <i class="bi bi-calendar-check fs-1 text-success"></i>
+
+        <h5 class="mt-3">Online Booking</h5>
+
+        <p>Users can browse available treks and book them easily.</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <i class="bi bi-people fs-1 text-success"></i>
+
+        <h5 class="mt-3">Staff Assignment</h5>
+
+        <p>Assign staff members to specific treks for better management.</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <i class="bi bi-person-check fs-1 text-success"></i>
+
+        <h5 class="mt-3">User Management</h5>
+
+        <p>Manage users and staff with role-based access control.</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <i class="bi bi-shield-lock fs-1 text-success"></i>
+
+        <h5 class="mt-3">Secure Authentication</h5>
+
+        <p>Protected login system with role-based authorization.</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <i class="bi bi-phone fs-1 text-success"></i>
+
+        <h5 class="mt-3">Responsive Design</h5>
+
+        <p>Optimized for desktop, tablet and mobile devices.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow">
+    <div class="card-body">
+      <h2 class="text-center fw-bold mb-4">Technologies Used</h2>
+
+      <div class="row text-center">
+        <div class="col-md-3">
+          <h5>Frontend</h5>
+
+          <p>HTML5</p>
+          <p>CSS3</p>
+          <p>Bootstrap 5</p>
+          <p>Jinja2</p>
+        </div>
+
+        <div class="col-md-3">
+          <h5>Backend</h5>
+
+          <p>Python</p>
+          <p>Flask</p>
+        </div>
+
+        <div class="col-md-3">
+          <h5>Database</h5>
+
+          <p>SQLite</p>
+          <p>SQLAlchemy</p>
+        </div>
+
+        <div class="col-md-3">
+          <h5>Authentication</h5>
+
+          <p>Flask-Login</p>
+          <p>Werkzeug Security</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container py-5">
+  <h2 class="fw-bold mb-4">Booking Management</h2>
+
+  {% if bookings %}
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-success">
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Trek</th>
+          <th>Booking Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for booking in bookings %}
+
+        <tr>
+          <td>{{ booking.id }}</td>
+          <td>{{ booking.user.name }}</td>
+          <td>{{ booking.trek.name }}</td>
+          <td>{{ booking.booking_date.strftime("%d-%m-%Y") }}</td>
+          <td>
+            <span class="badge bg-success"> {{ booking.status }} </span>
+          </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+
+  <div class="alert alert-info">No bookings available.</div>
+
+  {% endif %}
+</div>
+
+{% endblock %}

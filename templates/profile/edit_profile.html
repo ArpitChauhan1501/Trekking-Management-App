@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h3 class="mb-0">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Edit Profile
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Name <span class="text-danger">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                value="{{ current_user.name }}"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control"
+                                value="{{ current_user.email }}"
+                                readonly>
+
+                            <div class="form-text">
+                                Email cannot be changed.
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Phone
+                            </label>
+
+                            <input
+                                type="text"
+                                name="phone"
+                                class="form-control"
+                                value="{{ current_user.phone or '' }}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Role
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ current_user.role|capitalize }}"
+                                readonly>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{{ url_for('auth.profile') }}"
+                               class="btn btn-outline-secondary">
+
+                                Cancel
+
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success">
+
+                                Save Changes
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <p class="text-muted small mt-3 mb-0">
+                        <span class="text-danger">*</span> indicates required fields.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

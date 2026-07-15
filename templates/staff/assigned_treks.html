@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2 class="fw-bold">
+            Assigned Treks
+        </h2>
+
+    </div>
+
+    {% if treks %}
+
+    <div class="row">
+
+        {% for trek in treks %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                {% if trek.image %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + trek.image) }}"
+                    class="card-img-top"
+                    style="height:220px; object-fit:cover;"
+                    alt="{{ trek.name }}">
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+                        {{ trek.name }}
+                    </h5>
+
+                    <p>
+                        <strong>Location:</strong>
+                        {{ trek.location }}
+                    </p>
+
+                    <p>
+                        <strong>Difficulty:</strong>
+                        {{ trek.difficulty }}
+                    </p>
+
+                    <p>
+                        <strong>Duration:</strong>
+                        {{ trek.duration }} Days
+                    </p>
+
+                    <p>
+                        <strong>Price:</strong>
+                        ₹ {{ trek.price }}
+                    </p>
+
+                    <p>
+                        <strong>Maximum Participants:</strong>
+                        {{ trek.max_participants }}
+                    </p>
+
+                    <p class="text-muted">
+                        {{ trek.description }}
+                    </p>
+
+                    <a href="{{ url_for('staff.staff_bookings') }}"
+                       class="btn btn-success w-100">
+
+                        View Bookings
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info">
+
+        No treks have been assigned to you yet.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
