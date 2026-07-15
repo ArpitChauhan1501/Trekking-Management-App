@@ -123,44 +123,10 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Create the Database
-
-```bash
-python app.py
-```
-
-### Create the Default Admin Account
-
-```bash
-python seed.py
-```
-
 ### Run the Application
 
 ```bash
-python app.py
-```
-
-The application will be available at:
-
-```
-http://localhost:5000
-```
-
----
-
-## Default Admin Credentials
-
-Email
-
-```
-admin@gmail.com
-```
-
-Password
-
-```
-Admin@123
+gunicorn app:app
 ```
 
 ---
