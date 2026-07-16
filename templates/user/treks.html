@@ -22,20 +22,30 @@
 
         {% endif %}
 
-        <div class="card-body">
-          <h5>{{ trek.name }}</h5>
-          <p><strong>Location:</strong> {{ trek.location }}</p>
-          <p><strong>Difficulty:</strong> {{ trek.difficulty }}</p>
-          <p><strong>Duration:</strong> {{ trek.duration }} Days</p>
-          <p><strong>Price:</strong> ₹{{ trek.price }}</p>
-        </div>
+        <div class="card-body d-flex flex-column">
+
+        <h5>{{ trek.name }}</h5>
+
+        <p><strong>Location:</strong> {{ trek.location }}</p>
+        <p><strong>Difficulty:</strong> {{ trek.difficulty }}</p>
+        <p><strong>Duration:</strong> {{ trek.duration }} Days</p>
+        <p><strong>Price:</strong> ₹{{ trek.price }}</p>
+
         <form
-        action="{{ url_for('user.book_trek', trek_id=trek.id) }}"
-        method="POST"
-      >
-        <button type="submit" class="btn btn-success w-100">Book Now</button>
-      </form>
-      </div>
+            action="{{ url_for('user.book_trek', trek_id=trek.id) }}"
+            method="POST"
+            class="mt-auto">
+
+        <button
+            type="submit"
+            class="btn btn-success w-100 mt-3">
+            Book Now
+        </button>
+
+    </form>
+
+</div>
+    </div>
     </div>
 
     {% endfor %}
