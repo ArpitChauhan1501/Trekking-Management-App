@@ -29,13 +29,13 @@
           <p><strong>Duration:</strong> {{ trek.duration }} Days</p>
           <p><strong>Price:</strong> ₹{{ trek.price }}</p>
         </div>
-      </div>
-      <form
+        <form
         action="{{ url_for('user.book_trek', trek_id=trek.id) }}"
         method="POST"
       >
         <button type="submit" class="btn btn-success w-100">Book Now</button>
       </form>
+      </div>
     </div>
 
     {% endfor %}
