@@ -46,9 +46,8 @@ section {
 
 .hero-image{
     width:100%;
-    max-width:550px;
+    max-width:520px;
     height:auto;
-    border-radius:15px;
 }
 
 .card {
@@ -156,6 +155,7 @@ footer a:hover {
 @media (max-width: 768px) {
 
     .hero-section{
+        text-align:center;
         padding:60px 15px;
     }
 
@@ -163,19 +163,18 @@ footer a:hover {
         font-size:2.4rem;
     }
 
+    .hero-section p{
+        font-size:1.1rem;
+    }
+
     .hero-image{
-        max-width:320px;
-        margin:0 auto;
-        display:block;
+        max-width:340px;
+        margin:auto;
     }
 
     .hero-section .btn{
         width:100%;
         margin-top:10px;
-    }
-
-    .hero-section p{
-        font-size:1.05rem;
     }
 
     .about-image{
